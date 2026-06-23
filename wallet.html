@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiranga Gaming - Wallet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body" onload="checkAuth(); loadWalletPage(); setSidebarUser();">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar tiranga-sidebar">
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <div class="sidebar-top">
+      <div class="brand-wrap">
+        <div class="side-logo"><span>🎮</span></div>
+        <div class="brand-text">
+          <h2>Tiranga Gaming</h2>
+          <p>Wallet Panel</p>
+        </div>
+      </div>
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <div class="sidebar-user-card">
+      <div class="user-avatar-ring">
+        <div class="user-avatar">👤</div>
+      </div>
+      <div class="user-meta">
+        <h4 id="sideUserName">Player</h4>
+        <span>Elite Gamer</span>
+      </div>
+    </div>
+
+    <nav class="side-nav">
+      <a href="index.html" class="nav-item">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+
+      <a href="wallet.html" class="nav-item active">
+        <span class="nav-icon">💰</span>
+        <span class="nav-text">Wallet</span>
+        <span class="nav-badge">Live</span>
+      </a>
+
+      <a href="games.html" class="nav-item">
+        <span class="nav-icon">🎯</span>
+        <span class="nav-text">Games</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Leaderboard Part 4 me aayega')">
+        <span class="nav-icon">🏆</span>
+        <span class="nav-text">Leaderboard</span>
+      </a>
+
+      <a href="#" class="nav-item logout-item" onclick="logoutUser()">
+        <span class="nav-icon">🚪</span>
+        <span class="nav-text">Logout</span>
+      </a>
+    </nav>
+
+    <div class="side-bonus-box pro-bonus">
+      <div class="bonus-top">
+        <h3>Daily Bonus</h3>
+        <span class="bonus-pill">+50</span>
+      </div>
+      <p>Roz ek baar bonus coins claim karo aur rank badhao.</p>
+      <button class="small-btn bonus-btn" onclick="claimDailyBonus()">Claim Bonus</button>
+    </div>
+
+    <div class="sidebar-footer-strip">
+      <span class="dot saffron"></span>
+      <span class="dot white"></span>
+      <span class="dot green"></span>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-area">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Wallet 💰</h1>
+        <p>Coins, withdraw aur transaction history yahan dikhegi</p>
+      </div>
+
+      <div class="topbar-right">
+        <div class="wallet-pill">
+          Wallet Balance: <span id="walletPageBalance">0</span> Coins
+        </div>
+      </div>
+    </header>
+
+    <!-- Wallet Cards -->
+    <section class="dashboard-grid">
+      <div class="dash-card gradient-card pink">
+        <h3>Total Coins</h3>
+        <p id="walletCoinsCard">0</p>
+        <span>Current wallet balance</span>
+      </div>
+
+      <div class="dash-card gradient-card blue">
+        <h3>Today Bonus</h3>
+        <p>+50</p>
+        <span>Claim once every day</span>
+      </div>
+
+      <div class="dash-card gradient-card purple">
+        <h3>Total Games</h3>
+        <p>6+</p>
+        <span>Available game modules</span>
+      </div>
+
+      <div class="dash-card gradient-card gold">
+        <h3>User Rank</h3>
+        <p id="walletRankCard">Bronze</p>
+        <span>Coins ke hisaab se rank</span>
+      </div>
+    </section>
+
+    <!-- Wallet Actions -->
+    <section class="section-box">
+      <div class="section-head">
+        <h2>Wallet Actions</h2>
+        <p>Coins add, withdraw aur bonus actions</p>
+      </div>
+
+      <div class="quick-grid">
+        <button class="quick-card" onclick="addCoins(100)">
+          ➕ <span>Add 100 Coins</span>
+        </button>
+
+        <button class="quick-card" onclick="addCoins(500)">
+          💎 <span>Add 500 Coins</span>
+        </button>
+
+        <button class="quick-card" onclick="claimDailyBonus()">
+          🎁 <span>Claim Bonus</span>
+        </button>
+
+        <button class="quick-card" onclick="requestWithdraw()">
+          🏦 <span>Withdraw Request</span>
+        </button>
+
+        <button class="quick-card" onclick="showToast('UPI payment gateway Part 5 me aayega')">
+          📲 <span>UPI Deposit</span>
+        </button>
+
+        <button class="quick-card" onclick="showToast('Referral system Part 5 me aayega')">
+          👥 <span>Referral Bonus</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Withdraw Box -->
+    <section class="section-box">
+      <div class="section-head">
+        <h2>Withdraw Panel</h2>
+        <p>Minimum 500 coins par withdraw request demo</p>
+      </div>
+
+      <div class="wallet-form-box">
+        <div class="wallet-form-grid">
+          <div class="wallet-form-item">
+            <label>UPI ID</label>
+            <input type="text" id="upiId" placeholder="example@upi" />
+          </div>
+
+          <div class="wallet-form-item">
+            <label>Coins to Withdraw</label>
+            <input type="number" id="withdrawCoins" placeholder="Enter coins" />
+          </div>
+        </div>
+
+        <button class="primary-btn" onclick="requestWithdraw()">Request Withdraw</button>
+      </div>
+    </section>
+
+    <!-- Transactions -->
+    <section class="section-box">
+      <div class="section-head">
+        <h2>Recent Transactions</h2>
+        <p>Wallet history yahan show hogi</p>
+      </div>
+
+      <div class="transaction-list" id="transactionList">
+        <!-- JS se items aayenge -->
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast">Notification</div>
+  <script src="script.js"></script>
+</body>
+</html>

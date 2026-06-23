@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiranga Gaming - Games</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body" onload="checkAuth(); loadGamesPage(); setSidebarUser();">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar tiranga-sidebar">
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <div class="sidebar-top">
+      <div class="brand-wrap">
+        <div class="side-logo"><span>🎮</span></div>
+        <div class="brand-text">
+          <h2>Tiranga Gaming</h2>
+          <p>Games Hub</p>
+        </div>
+      </div>
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <div class="sidebar-user-card">
+      <div class="user-avatar-ring">
+        <div class="user-avatar">👤</div>
+      </div>
+      <div class="user-meta">
+        <h4 id="sideUserName">Player</h4>
+        <span>Elite Gamer</span>
+      </div>
+    </div>
+
+    <nav class="side-nav">
+      <a href="index.html" class="nav-item">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+
+      <a href="wallet.html" class="nav-item">
+        <span class="nav-icon">💰</span>
+        <span class="nav-text">Wallet</span>
+      </a>
+
+      <a href="games.html" class="nav-item active">
+        <span class="nav-icon">🎯</span>
+        <span class="nav-text">Games</span>
+        <span class="nav-badge">Live</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Leaderboard Part 4 me aayega')">
+        <span class="nav-icon">🏆</span>
+        <span class="nav-text">Leaderboard</span>
+      </a>
+
+      <a href="#" class="nav-item logout-item" onclick="logoutUser()">
+        <span class="nav-icon">🚪</span>
+        <span class="nav-text">Logout</span>
+      </a>
+    </nav>
+
+    <div class="side-bonus-box pro-bonus">
+      <div class="bonus-top">
+        <h3>Daily Bonus</h3>
+        <span class="bonus-pill">+50</span>
+      </div>
+      <p>Roz ek baar bonus coins claim karo aur rank badhao.</p>
+      <button class="small-btn bonus-btn" onclick="claimDailyBonus()">Claim Bonus</button>
+    </div>
+
+    <div class="sidebar-footer-strip">
+      <span class="dot saffron"></span>
+      <span class="dot white"></span>
+      <span class="dot green"></span>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-area">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Games Hub 🎯</h1>
+        <p>Yahan se sab games open honge</p>
+      </div>
+
+      <div class="topbar-right">
+        <div class="wallet-pill">
+          Wallet: <span id="gamesWalletBalance">0</span> Coins
+        </div>
+      </div>
+    </header>
+
+    <!-- Games Overview -->
+    <section class="dashboard-grid">
+      <div class="dash-card gradient-card pink">
+        <h3>Games Available</h3>
+        <p>6</p>
+        <span>Current game modules</span>
+      </div>
+
+      <div class="dash-card gradient-card blue">
+        <h3>Coins</h3>
+        <p id="gamesCoinsCard">0</p>
+        <span>Wallet linked with games</span>
+      </div>
+
+      <div class="dash-card gradient-card purple">
+        <h3>Daily Bonus</h3>
+        <p>+50</p>
+        <span>Use bonus in games</span>
+      </div>
+
+      <div class="dash-card gradient-card gold">
+        <h3>Rank</h3>
+        <p id="gamesRankCard">Bronze</p>
+        <span>Higher coins = higher rank</span>
+      </div>
+    </section>
+
+    <!-- Game Cards -->
+    <section class="section-box">
+      <div class="section-head">
+        <h2>Available Games</h2>
+        <p>Part 3 me ye sab real pages se connect honge</p>
+      </div>
+
+      <div class="game-card-grid">
+        <div class="game-box">
+          <div class="game-box-icon">🎡</div>
+          <h3>Spin & Win</h3>
+          <p>Wheel ghumao aur coins jeeto</p>
+          <button class="primary-btn" onclick="showToast('Spin game Part 3 me aayega')">Open Game</button>
+        </div>
+
+        <div class="game-box">
+          <div class="game-box-icon">🎫</div>
+          <h3>Scratch Card</h3>
+          <p>Scratch karo aur reward pao</p>
+          <button class="primary-btn" onclick="showToast('Scratch game Part 3 me aayega')">Open Game</button>
+        </div>
+
+        <div class="game-box">
+          <div class="game-box-icon">🍀</div>
+          <h3>Lucky Number</h3>
+          <p>Lucky pick karke coins jeeto</p>
+          <button class="primary-btn" onclick="showToast('Lucky Number Part 3 me aayega')">Open Game</button>
+        </div>
+
+        <div class="game-box">
+          <div class="game-box-icon">🧠</div>
+          <h3>Quiz Game</h3>
+          <p>Sawal ka jawab do aur jeeto</p>
+          <button class="primary-btn" onclick="showToast('Quiz game Part 4 me aayega')">Open Game</button>
+        </div>
+
+        <div class="game-box">
+          <div class="game-box-icon">❌⭕</div>
+          <h3>Tic Tac Toe</h3>
+          <p>Classic battle game</p>
+          <button class="primary-btn" onclick="showToast('Tic Tac Toe Part 4 me aayega')">Open Game</button>
+        </div>
+
+        <div class="game-box">
+          <div class="game-box-icon">🎲</div>
+          <h3>Dice Roll</h3>
+          <p>Roll karo aur reward jeeto</p>
+          <button class="primary-btn" onclick="showToast('Dice Roll Part 3 me aayega')">Open Game</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast">Notification</div>
+  <script src="script.js"></script>
+</body>
+</html>
