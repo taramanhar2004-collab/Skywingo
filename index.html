@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiranga Gaming Pro Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body" onload="checkAuth(); loadDashboard(); setSidebarUser();">
+
+  <!-- =========================
+       PROFESSIONAL TIRANGA SIDEBAR
+  ========================== -->
+  <aside class="sidebar tiranga-sidebar">
+    <div class="sidebar-glow sidebar-glow-1"></div>
+    <div class="sidebar-glow sidebar-glow-2"></div>
+
+    <div class="sidebar-top">
+      <div class="brand-wrap">
+        <div class="side-logo">
+          <span>🎮</span>
+        </div>
+
+        <div class="brand-text">
+          <h2>Tiranga Gaming</h2>
+          <p>Pro Money Game Portal</p>
+        </div>
+      </div>
+
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <!-- User Card -->
+    <div class="sidebar-user-card">
+      <div class="user-avatar-ring">
+        <div class="user-avatar">👤</div>
+      </div>
+      <div class="user-meta">
+        <h4 id="sideUserName">Player</h4>
+        <span>Elite Gamer</span>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <nav class="side-nav">
+      <a href="index.html" class="nav-item active">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-text">Dashboard</span>
+        <span class="nav-badge">Live</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Wallet page Part 2 me aayega')">
+        <span class="nav-icon">💰</span>
+        <span class="nav-text">Wallet</span>
+        <span class="nav-arrow">›</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Games page Part 2 me aayega')">
+        <span class="nav-icon">🎯</span>
+        <span class="nav-text">Games</span>
+        <span class="nav-arrow">›</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Leaderboard Part 4 me aayega')">
+        <span class="nav-icon">🏆</span>
+        <span class="nav-text">Leaderboard</span>
+        <span class="nav-arrow">›</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Profile section niche diya gaya hai')">
+        <span class="nav-icon">👤</span>
+        <span class="nav-text">Profile</span>
+        <span class="nav-arrow">›</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Rewards panel add hoga')">
+        <span class="nav-icon">🎁</span>
+        <span class="nav-text">Rewards</span>
+        <span class="nav-badge green">New</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Tournament panel add hoga')">
+        <span class="nav-icon">⚔️</span>
+        <span class="nav-text">Tournament</span>
+        <span class="nav-badge orange">Pro</span>
+      </a>
+
+      <a href="#" class="nav-item" onclick="showToast('Settings panel add hoga')">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-text">Settings</span>
+        <span class="nav-arrow">›</span>
+      </a>
+
+      <a href="#" class="nav-item logout-item" onclick="logoutUser()">
+        <span class="nav-icon">🚪</span>
+        <span class="nav-text">Logout</span>
+      </a>
+    </nav>
+
+    <!-- Bonus Box -->
+    <div class="side-bonus-box pro-bonus">
+      <div class="bonus-top">
+        <h3>Daily Bonus</h3>
+        <span class="bonus-pill">+50</span>
+      </div>
+      <p>Roz ek baar bonus coins claim karo aur rank badhao.</p>
+      <button class="small-btn bonus-btn" onclick="claimDailyBonus()">Claim Bonus</button>
+    </div>
+
+    <div class="sidebar-footer-strip">
+      <span class="dot saffron"></span>
+      <span class="dot white"></span>
+      <span class="dot green"></span>
+    </div>
+  </aside>
+
+  <!-- =========================
+       MAIN AREA
+  ========================== -->
+  <main class="main-area">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Welcome, <span id="dashUser">Player</span> 👋</h1>
+        <p>Professional Tiranga gaming dashboard ready hai</p>
+      </div>
+
+      <div class="topbar-right">
+        <div class="wallet-pill">
+          💰 Wallet: <span id="walletBalance">0</span> Coins
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-panel">
+      <div class="hero-left">
+        <span class="hero-tag">🔥 Trending Demo Money Game Platform</span>
+        <h2>Play • Win Coins • Upgrade Your Rank</h2>
+        <p>
+          Ye tumhare gaming portal ka professional Tiranga style dashboard hai.
+          Isme account system, dashboard UI, wallet preview, daily bonus, user profile,
+          quick actions aur modern gaming layout diya gaya hai.
+          Aage ke parts me Spin, Scratch, Lucky Number, Quiz, Tic Tac Toe aur real game pages connect kiye ja sakte hain.
+        </p>
+
+        <div class="hero-actions">
+          <button class="primary-btn" onclick="showToast('Games Part 2 aur Part 3 me add honge')">Start Playing</button>
+          <button class="secondary-btn" onclick="claimDailyBonus()">Claim Bonus</button>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-mini-card">
+          <h3>Live Stats</h3>
+          <div class="live-stats">
+            <div>
+              <strong id="gamesCount">6</strong>
+              <span>Games</span>
+            </div>
+            <div>
+              <strong id="bonusCount">50</strong>
+              <span>Bonus</span>
+            </div>
+            <div>
+              <strong id="rankText">Bronze</strong>
+              <span>Rank</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Cards -->
+    <section class="dashboard-grid">
+      <div class="dash-card gradient-card pink">
+        <h3>Total Coins</h3>
+        <p id="cardCoins">0</p>
+        <span>Wallet balance preview</span>
+      </div>
+
+      <div class="dash-card gradient-card blue">
+        <h3>Daily Bonus</h3>
+        <p>+50</p>
+        <span>Claim once every day</span>
+      </div>
+
+      <div class="dash-card gradient-card purple">
+        <h3>Games Ready</h3>
+        <p>6+</p>
+        <span>Spin, Scratch, Lucky, Quiz...</span>
+      </div>
+
+      <div class="dash-card gradient-card gold">
+        <h3>User Rank</h3>
+        <p id="rankCard">Bronze</p>
+        <span>More coins = higher rank</span>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="section-box">
+      <div class="section-head">
+        <h2>Quick Actions</h2>
+        <p>Ye buttons aage ke parts me real pages se connect honge</p>
+      </div>
+
+      <div class="quick-grid">
+        <button class="quick-card" onclick="showToast('Spin & Win Part 3 me aayega')">
+          🎡 <span>Spin & Win</span>
+        </button>
+
+        <button class="quick-card" onclick="showToast('Scratch Card Part 3 me aayega')">
+          🎫 <span>Scratch Card</span>
+        </button>
+
+        <button class="quick-card" onclick="showToast('Lucky Number Part 3 me aayega')">
+          🍀 <span>Lucky Number</span>
+        </button>
+
+        <button class="quick-card" onclick="showToast('Quiz Game Part 4 me aayega')">
+          🧠 <span>Quiz Game</span>
+        </button>
+
+        <button class="quick-card" onclick="showToast('Tic Tac Toe Part 4 me aayega')">
+          ❌⭕ <span>Tic Tac Toe</span>
+        </button>
+
+        <button class="quick-card" onclick="showToast('Wallet page Part 2 me aayega')">
+          💰 <span>Wallet</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Profile -->
+    <section class="section-box">
+      <div class="section-head">
+        <h2>Your Profile</h2>
+        <p>User information aur progress yahan dikhega</p>
+      </div>
+
+      <div class="profile-box">
+        <div class="profile-avatar">👤</div>
+
+        <div class="profile-info">
+          <div class="profile-item">
+            <label>Name</label>
+            <strong id="profileName">Player</strong>
+          </div>
+
+          <div class="profile-item">
+            <label>Email</label>
+            <strong id="profileEmail">example@gmail.com</strong>
+          </div>
+
+          <div class="profile-item">
+            <label>Wallet Coins</label>
+            <strong id="profileCoins">0</strong>
+          </div>
+
+          <div class="profile-item">
+            <label>Current Rank</label>
+            <strong id="profileRank">Bronze</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Progress -->
+    <section class="section-box">
+      <div class="section-head">
+        <h2>Project Progress</h2>
+        <p>Abhi dashboard professional UI complete hua hai</p>
+      </div>
+
+      <div class="notice-box">
+        <ul>
+          <li>✅ Signup / Login system ready</li>
+          <li>✅ Dashboard professional Tiranga UI ready</li>
+          <li>✅ Wallet preview + coins system ready</li>
+          <li>✅ Daily bonus system ready</li>
+          <li>⏳ Wallet page Part 2 me aayega</li>
+          <li>⏳ Spin, Scratch, Lucky Number Part 3 me aayega</li>
+          <li>⏳ Quiz, Tic Tac Toe, Leaderboard Part 4 me aayega</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">Notification</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
